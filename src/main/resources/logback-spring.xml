@@ -3,17 +3,13 @@
 <configuration>
 
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-    <springProperty scope="context" name="appName" source="spring.application.name"/>
+    <property resource="bootstrap.properties" />
+    <property scope="context" name="appName" value="${spring.application.name:-local}"/>
     <property scope="context" name="logFile" value="./${appName}.log"/>
     <property scope="context" name="maxHistory" value="30"/>
     <property scope="context" name="totalSizeCap" value="100MB"/>
     <property scope="context" name="LOGSTASH_URL" value="127.0.0.1:5000"/>
 
-    <!-- Debug-Output -->
-    <!-- <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" /> -->
-
-    <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
     <property name="JSON_ENCODER_PATTERN" value='{
         "severity": "%level",
         "service": "${appName:-}",
@@ -27,7 +23,7 @@
         }'
     />
 
-     <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+     <appender name="localfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${logFile}</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${logFile}.%d{yyyy-MM-dd}</fileNamePattern>
@@ -40,9 +36,7 @@
         </encoder>
     </appender>
 
- 
-
-    <appender name="elk" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+     <appender name="elk" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>${LOGSTASH_URL}</destination>
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
@@ -60,7 +54,7 @@
  
     <root level="INFO">
     <appender-ref ref="elk"/>
-    <appender-ref ref="logfile"/>
+    <appender-ref ref="localfile"/>
     </root>
 </configuration>
 

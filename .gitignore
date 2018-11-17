@@ -12,3 +12,4 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 logbacktester.log
 .settings/
+spring-shell.log
