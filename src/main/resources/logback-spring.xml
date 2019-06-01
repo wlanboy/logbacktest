@@ -8,7 +8,7 @@
     <property scope="context" name="logFile" value="./${appName}.log"/>
     <property scope="context" name="maxHistory" value="30"/>
     <property scope="context" name="totalSizeCap" value="100MB"/>
-    <property scope="context" name="LOGSTASH_URL" value="${LOGBACKSERVER}"/>
+    <property scope="context" name="LOGSTASH_URL" value="${LOGSTASH}"/>
 
     <property name="JSON_ENCODER_PATTERN" value='{
         "severity": "%level",
