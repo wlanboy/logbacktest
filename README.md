@@ -2,10 +2,13 @@
 Simple CLI tool to test logback on localhost
 
 ## Dependencies
-At least: Java 8 and Maven 3.5
+At least: Java 11 and Maven 3.6
 
 ## Build Simple logback tool
 mvn package -DskipTests=true
+
+## Depends on
+Elk stack: https://github.com/wlanboy/Dockerfiles/tree/master/Elk
 
 ## Run Simple logback tool
 ### Environment variables
