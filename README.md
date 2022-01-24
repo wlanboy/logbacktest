@@ -1,3 +1,5 @@
+[![Java CI with Maven](https://github.com/wlanboy/logbacktest/actions/workflows/maven.yml/badge.svg)](https://github.com/wlanboy/logbacktest/actions/workflows/maven.yml)
+
 # logbacktest
 Simple CLI tool to test logback on localhost
 
